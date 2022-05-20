@@ -1,6 +1,6 @@
 
 
-const playerSelection = 'rock';
+const playerSelection = 'Rock';
 game ();
 
 
@@ -12,15 +12,15 @@ function game (){
 }
 
 function playRound (playerSelection, computerSelection) {
-    console.log(`computerSelection is ${computerSelection}`)
-    if ( (playerSelection === 'rock' && computerSelection === 'paper')
-    || (playerSelection === 'paper' && computerSelection === 'scissors')
-    || (playerSelection === 'scissors' && computerSelection === 'rock')){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    console.log(`computerSelection:${computerSelection}\n playerSelection: ${playerSelection}`)
+    if ( (playerSelection === 'Rock' && computerSelection === 'Paper')
+    || (playerSelection === 'Paper' && computerSelection === 'Scissors')
+    || (playerSelection === 'Scissors' && computerSelection === 'Rock')){
+        return(`You lose! ${computerSelection} beats ${playerSelection}`);
     } else if (playerSelection === computerSelection){
-        console.log(`Draw! ${playerSelection} is equal to ${computerSelection}`)
+        return (`Draw! ${playerSelection} is equal to ${computerSelection}`);
     } else {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        return(`You win! ${playerSelection} beats ${computerSelection}`);
     }
 
 }
@@ -30,13 +30,13 @@ function computerPlay () {
     let computerChoice;
     switch (randomNum){
         case 0:
-            computerChoice = 'rock';
+            computerChoice = 'Rock';
             break;
         case 1:
-            computerChoice = 'paper';
+            computerChoice = 'Paper';
             break;
         case 2:
-            computerChoice = 'scissors';
+            computerChoice = 'Scissors';
             break;
         default: 
             console.log("Something went wrong with randomNum");
