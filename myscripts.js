@@ -5,14 +5,23 @@ game ();
 
 
 function game (){
+    let gameResultPlayer = 0;
+    let gameResultComputer = 0;
     for (let i = 1; i <= 5; i++){
         const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+        let roundResult = playRound(playerSelection, computerSelection);
+        console.log(roundResult);
+        if (roundResult.includes("win")){
+            gameResultPlayer++;
+        }else if (roundResult.includes('lose')){
+            gameResultComputer++;
+        } 
     }
+    console.log(`player: ${gameResultPlayer}\ncomputer: ${gameResultComputer}`);
 }
 
 function playRound (playerSelection, computerSelection) {
-    console.log(`computerSelection:${computerSelection}\n playerSelection: ${playerSelection}`)
+    console.log(`computerSelection:${computerSelection}\n playerSelection: ${playerSelection}`);
     if ( (playerSelection === 'Rock' && computerSelection === 'Paper')
     || (playerSelection === 'Paper' && computerSelection === 'Scissors')
     || (playerSelection === 'Scissors' && computerSelection === 'Rock')){
