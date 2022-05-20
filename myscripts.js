@@ -1,18 +1,23 @@
+
+
+
 function computerPlay () {
     let randomNum = getRandomIntInclusive(0,2);
-    let computerChoice = " ";
+    let computerChoice;
     switch (randomNum){
         case 0:
             computerChoice = 'rock';
             break;
         case 1:
             computerChoice = 'paper';
+            break;
         case 2:
             computerChoice = 'scissors';
+            break;
         default: 
             console.log("Something went wrong with randomNum");
     }
-    console.log("test" + computerChoice);
+    return computerChoice;
 }
 
 function getRandomIntInclusive(min, max) {
@@ -20,3 +25,5 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
   }
+
+
