@@ -1,5 +1,15 @@
+function playRound (playerSelection, computerSelection) {
+    if ( (playerSelection === 'rock' && computerSelection === 'paper')
+    || (playerSelection === 'paper' && computerSelection === 'scissors')
+    || (playerSelection === 'scissors' && computerSelection === 'rock')){
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`)
+    }
 
+}
 
+const playerSelection = "rock"
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
 
 function computerPlay () {
     let randomNum = getRandomIntInclusive(0,2);
