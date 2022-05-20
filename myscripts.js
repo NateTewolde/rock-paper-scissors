@@ -1,15 +1,29 @@
+
+
+const playerSelection = 'rock';
+game ();
+
+
+function game (){
+    for (let i = 1; i <= 5; i++){
+        const computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
 function playRound (playerSelection, computerSelection) {
+    console.log(`computerSelection is ${computerSelection}`)
     if ( (playerSelection === 'rock' && computerSelection === 'paper')
     || (playerSelection === 'paper' && computerSelection === 'scissors')
     || (playerSelection === 'scissors' && computerSelection === 'rock')){
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`)
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+    } else if (playerSelection === computerSelection){
+        console.log(`Draw! ${playerSelection} is equal to ${computerSelection}`)
+    } else {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
     }
 
 }
-
-const playerSelection = "rock"
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
 
 function computerPlay () {
     let randomNum = getRandomIntInclusive(0,2);
