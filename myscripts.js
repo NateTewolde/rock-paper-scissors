@@ -1,11 +1,7 @@
-const btn = document.querySelector(".btn");
-btn.addEventListener("click", () => {
-  console.log(btn.textContent);
-});
-
 game();
 //Runs 5 rounds of playRound and displays the results
 function game() {
+  playerButton();
   let gameResultPlayer = 0;
   let gameResultComputer = 0;
   const playerSelection = capitalize(prompt("Rock Paper Scissors GO!")); // change this to user button click
@@ -29,8 +25,19 @@ function game() {
   }
 }
 
+//Format buttons to send rock paper or scissors when clicked to playRound
+function playerButton() {
+  const btns = document.querySelectorAll(".btn");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      playRound(btn.textContent);
+    });
+  });
+}
+
 //Takes 2 variables and plays a round of rock paper scissors with them
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+  let computerSelection = computerPlay();
   console.log(
     `computerSelection:${computerSelection}\n playerSelection: ${playerSelection}`
   );
