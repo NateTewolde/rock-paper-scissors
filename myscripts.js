@@ -1,19 +1,21 @@
-game();
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+  console.log(btn.textContent);
+});
 
+game();
 //Runs 5 rounds of playRound and displays the results
 function game() {
   let gameResultPlayer = 0;
   let gameResultComputer = 0;
-  for (let i = 1; i <= 5; i++) {
-    const playerSelection = capitalize(prompt("Rock Paper Scissors GO!"));
-    const computerSelection = computerPlay();
-    let roundResult = playRound(playerSelection, computerSelection);
-    console.log(roundResult);
-    if (roundResult.includes("win")) {
-      gameResultPlayer++;
-    } else if (roundResult.includes("lose")) {
-      gameResultComputer++;
-    }
+  const playerSelection = capitalize(prompt("Rock Paper Scissors GO!")); // change this to user button click
+  computerSelection = computerPlay();
+  let roundResult = playRound(playerSelection, computerSelection);
+  console.log(roundResult);
+  if (roundResult.includes("win")) {
+    gameResultPlayer++;
+  } else if (roundResult.includes("lose")) {
+    gameResultComputer++;
   }
   console.log(`player: ${gameResultPlayer}\ncomputer: ${gameResultComputer}`);
   if (gameResultPlayer > gameResultComputer) {
