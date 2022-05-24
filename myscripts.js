@@ -1,28 +1,10 @@
+const container = document.querySelector("#container");
+let gameResultPlayer = 0;
+let gameResultComputer = 0;
 game();
 //Runs 5 rounds of playRound and displays the results
 function game() {
   playerButton();
-  let gameResultPlayer = 0;
-  let gameResultComputer = 0;
-  const playerSelection = capitalize(prompt("Rock Paper Scissors GO!")); // change this to user button click
-  computerSelection = computerPlay();
-  let roundResult = playRound(playerSelection, computerSelection);
-  console.log(roundResult);
-  if (roundResult.includes("win")) {
-    gameResultPlayer++;
-  } else if (roundResult.includes("lose")) {
-    gameResultComputer++;
-  }
-  console.log(`player: ${gameResultPlayer}\ncomputer: ${gameResultComputer}`);
-  if (gameResultPlayer > gameResultComputer) {
-    console.log(
-      `You won the game! ${gameResultPlayer} to ${gameResultComputer}`
-    );
-  } else if (gameResultComputer > gameResultPlayer) {
-    console.log(
-      `You lose the game! ${gameResultComputer} to ${gameResultPlayer}`
-    );
-  }
 }
 
 //Format buttons to send rock paper or scissors when clicked to playRound
@@ -38,19 +20,53 @@ function playerButton() {
 //Takes 2 variables and plays a round of rock paper scissors with them
 function playRound(playerSelection) {
   let computerSelection = computerPlay();
-  console.log(
-    `computerSelection:${computerSelection}\n playerSelection: ${playerSelection}`
-  );
+
   if (
     (playerSelection === "Rock" && computerSelection === "Paper") ||
     (playerSelection === "Paper" && computerSelection === "Scissors") ||
     (playerSelection === "Scissors" && computerSelection === "Rock")
   ) {
-    return `You lose! ${computerSelection} beats ${playerSelection}`;
+    roundResultDisplay(
+      `You lose the round! ${computerSelection} beats ${playerSelection}`
+    );
   } else if (playerSelection === computerSelection) {
-    return `Draw! ${playerSelection} is equal to ${computerSelection}`;
+    roundResultDisplay(
+      `Draw! ${playerSelection} is equal to ${computerSelection}`
+    );
   } else {
-    return `You win! ${playerSelection} beats ${computerSelection}`;
+    roundResultDisplay(
+      `You win the round! ${playerSelection} beats ${computerSelection}`
+    );
+  }
+}
+
+function roundResultDisplay(roundResult) {
+  const resultDiv = document.createElement("div");
+  resultDiv.textContent = roundResult;
+  container.appendChild(resultDiv);
+  gameResultDisplay(roundResult);
+}
+
+function gameResultDisplay(roundResult) {
+  const gameResultDiv = document.createElement("div");
+  gameResultDiv.textContent = roundResult;
+
+  if (roundResult.includes("win")) {
+    gameResultPlayer++;
+  } else if (roundResult.includes("lose")) {
+    gameResultComputer++;
+  }
+
+  const scoreTracker = document.createElement("div");
+  scoreTracker.textContent = `player: ${gameResultPlayer}\ncomputer: ${gameResultComputer}`;
+  container.appendChild(scoreTracker);
+
+  if (gameResultPlayer > gameResultComputer && gameResultPlayer == 5) {
+    gameResultDiv.textContent = `You won the game! ${gameResultPlayer} to ${gameResultComputer}`;
+    container.appendChild(gameResultDiv);
+  } else if (gameResultComputer > gameResultPlayer && gameResultComputer == 5) {
+    gameResultDiv.textContent = `You lose the game! ${gameResultComputer} to ${gameResultPlayer}`;
+    container.appendChild(gameResultDiv);
   }
 }
 
