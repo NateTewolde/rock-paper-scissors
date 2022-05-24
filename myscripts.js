@@ -1,17 +1,15 @@
 const container = document.querySelector("#container");
 let gameResultPlayer = 0;
 let gameResultComputer = 0;
-game();
-//Runs 5 rounds of playRound and displays the results
-function game() {
-  playerButton();
-}
+
+playerButton();
 
 //Format buttons to send rock paper or scissors when clicked to playRound
 function playerButton() {
   const btns = document.querySelectorAll(".btn");
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      removeAllChildNodes(container);
       playRound(btn.textContent);
     });
   });
@@ -42,6 +40,7 @@ function playRound(playerSelection) {
 
 function roundResultDisplay(roundResult) {
   const resultDiv = document.createElement("div");
+  resultDiv.classList.add("resultClass");
   resultDiv.textContent = roundResult;
   container.appendChild(resultDiv);
   gameResultDisplay(roundResult);
@@ -49,6 +48,7 @@ function roundResultDisplay(roundResult) {
 
 function gameResultDisplay(roundResult) {
   const gameResultDiv = document.createElement("div");
+  gameResultDiv.classList.add("resultClass");
   gameResultDiv.textContent = roundResult;
 
   if (roundResult.includes("win")) {
@@ -58,15 +58,25 @@ function gameResultDisplay(roundResult) {
   }
 
   const scoreTracker = document.createElement("div");
-  scoreTracker.textContent = `player: ${gameResultPlayer}\ncomputer: ${gameResultComputer}`;
+  scoreTracker.textContent = `player: ${gameResultPlayer} computer: ${gameResultComputer}`;
   container.appendChild(scoreTracker);
 
   if (gameResultPlayer > gameResultComputer && gameResultPlayer == 5) {
     gameResultDiv.textContent = `You won the game! ${gameResultPlayer} to ${gameResultComputer}`;
+    gameResultComputer -= gameResultComputer;
+    gameResultPlayer -= gameResultPlayer;
     container.appendChild(gameResultDiv);
   } else if (gameResultComputer > gameResultPlayer && gameResultComputer == 5) {
     gameResultDiv.textContent = `You lose the game! ${gameResultComputer} to ${gameResultPlayer}`;
+    gameResultComputer -= gameResultComputer;
+    gameResultPlayer -= gameResultPlayer;
     container.appendChild(gameResultDiv);
+  }
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
   }
 }
 
